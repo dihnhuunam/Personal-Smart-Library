@@ -11,7 +11,7 @@ export default function StartScreen({ navigation }) {
       <Logo />
       <Header>Personal Smart Library</Header>
       <Paragraph>
-        The easiest way to mange reading progress.
+        Welcome to our Personal Smart Library.
       </Paragraph>
       <Button
         mode="contained"
