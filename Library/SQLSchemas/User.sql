@@ -1,0 +1,6 @@
+CREATE TABLE library.User (
+    UserID INT PRIMARY KEY AUTO_INCREMENT,
+    Username VARCHAR(255) NOT NULL,
+    Password VARCHAR(255) NOT NULL,
+    FullName VARCHAR(255)
+);

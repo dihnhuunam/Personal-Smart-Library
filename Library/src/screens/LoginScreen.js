@@ -41,10 +41,6 @@ export default function LoginScreen({ navigation }) {
         onChangeText={(text) => setEmail({ value: text, error: '' })}
         error={!!email.error}
         errorText={email.error}
-        autoCapitalize="none"
-        autoCompleteType="email"
-        textContentType="emailAddress"
-        keyboardType="email-address"
       />
       <TextInput
         label="Password"
@@ -56,9 +52,7 @@ export default function LoginScreen({ navigation }) {
         secureTextEntry
       />
       <View style={styles.forgotPassword}>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('ResetPasswordScreen')}
-        >
+        <TouchableOpacity onPress={() => navigation.navigate('ResetPasswordScreen')}>
           <Text style={styles.forgot}>Forgot your password?</Text>
         </TouchableOpacity>
       </View>
