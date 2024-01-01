@@ -11,22 +11,30 @@ export default function Dashboard({ navigation }) {
       <Header>Hello ...</Header>
       <Button 
         mode="outlined"
-        icon="account-circle">
+        icon="account-circle"
+        onPress={() => {navigation.navigate('ProfileScreen')}}
+        >
         Edit profile
       </Button>
       <Button 
         mode="outlined"
-        icon="book-open">
+        icon="book-open"
+        onPress={() => {} }  
+      >
         Category
       </Button>
       <Button 
         mode="outlined"
-        icon="progress-pencil">
+        icon="progress-pencil"
+        onPress={() => {} }    
+      >
         Progress
       </Button>
       <Button 
         mode="outlined"
-        icon="file-chart">
+        icon="file-chart"
+        onPress={() => {} }  
+      >
         Statistic
       </Button>
       <Button
