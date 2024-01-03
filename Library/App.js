@@ -11,6 +11,7 @@ import {
   Dashboard,
   ProfileScreen
 } from './src/screens'
+import { Auth } from 'firebase/auth'
 
 const Stack = createStackNavigator()
 
