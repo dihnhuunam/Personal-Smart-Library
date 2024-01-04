@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('library', 'root', '213626',{
+const sequelize = new Sequelize('library1', 'root', '213626',{
     dialect: 'mysql'
 });
 
@@ -12,4 +12,4 @@ sequelize.authenticate().then(() => {
 
 console.log("Another task");
 
-
+module.exports = sequelize
