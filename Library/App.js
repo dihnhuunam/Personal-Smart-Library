@@ -11,6 +11,7 @@ import {
   Dashboard,
   ProfileScreen
 } from './src/screens'
+import { AsyncStorage } from '@react-native-async-storage/async-storage';
 
 const Stack = createStackNavigator()
 

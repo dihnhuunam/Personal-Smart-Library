@@ -11,12 +11,31 @@ import { theme } from '../core/theme'
 import { emailValidator } from '../helpers/emailValidator'
 import { passwordValidator } from '../helpers/passwordValidator'
 import { nameValidator } from '../helpers/nameValidator'
+import { FIREBASE_AUTH } from '../../firebaseConfig'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
 
 export default function RegisterScreen({ navigation }) {
   const [name, setName] = useState({ value: '', error: '' })
   const [email, setEmail] = useState({ value: '', error: '' })
   const [password, setPassword] = useState({ value: '', error: '' })
+  const [loading, setLoading] = useState(false);
+  const auth = FIREBASE_AUTH;
+  
 
+  const signUp = async () => {
+    setLoading(true);
+    try{
+      const response = await createUserWithEmailAndPassword(auth, email.value, password.value);
+      console.log(response);
+    }
+    catch (error){
+      console.log(error);
+      alert('Sign in failed ' +error.message );
+    }
+    finally {
+      setLoading(false);
+    }
+  }
   const onSignUpPressed = () => {
     const nameError = nameValidator(name.value)
     const emailError = emailValidator(email.value)
@@ -69,7 +88,7 @@ export default function RegisterScreen({ navigation }) {
       />
       <Button
         mode="contained"
-        onPress={onSignUpPressed}
+        onPress={signUp}
         style={{ marginTop: 24 }}
       >
         Sign Up
