@@ -12,6 +12,7 @@ import {
   ProfileScreen
 } from './src/screens'
 import { AsyncStorage } from '@react-native-async-storage/async-storage';
+import { Auth } from 'firebase/auth'
 
 const Stack = createStackNavigator()
 

@@ -13,6 +13,7 @@ import { passwordValidator } from '../helpers/passwordValidator'
 import { FIREBASE_AUTH } from '../../firebaseConfig'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 
+
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState({ value: '', error: '' })
   const [password, setPassword] = useState({ value: '', error: '' })
@@ -106,3 +107,4 @@ const styles = StyleSheet.create({
     color: theme.colors.primary,
   },
 })
+
