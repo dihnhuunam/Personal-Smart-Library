@@ -9,7 +9,8 @@ import {
   RegisterScreen,
   ResetPasswordScreen,
   Dashboard,
-  ProfileScreen
+  ProfileScreen,
+  CategoryScreen
 } from './src/screens'
 import { AsyncStorage } from '@react-native-async-storage/async-storage';
 import { Auth } from 'firebase/auth'
@@ -22,11 +23,13 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator initialRouteName="StartScreen" screenOptions={{ headerShown: false }}>
           <Stack.Screen name="StartScreen" component={StartScreen} />
-          <Stack.Screen name="LoginScreen" component={LoginScreen} />
-          <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
+          <Stack.Screen name="LoginScreen" component={CategoryScreen} />
+          <Stack.Screen name="RegisterScreen" component={Dashboard} />
           <Stack.Screen name="Dashboard" component={Dashboard} />
           <Stack.Screen name="ResetPasswordScreen" component={ResetPasswordScreen}/>
           <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+          <Stack.Screen name="CategoryScreen" component={CategoryScreen} />
+
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
