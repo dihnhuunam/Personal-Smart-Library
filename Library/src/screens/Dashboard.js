@@ -19,7 +19,7 @@ export default function Dashboard({ navigation }) {
       <Button 
         mode="outlined"
         icon="book-open"
-        onPress={() => {} }  
+        onPress={() => {navigation.navigate('CategoryScreen')}}
       >
         Category
       </Button>
@@ -28,7 +28,7 @@ export default function Dashboard({ navigation }) {
         icon="progress-pencil"
         onPress={() => {} }    
       >
-        Progress
+        My Library
       </Button>
       <Button 
         mode="outlined"
