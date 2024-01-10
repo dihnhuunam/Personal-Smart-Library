@@ -1,32 +1,31 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require('../database');
 
-const User = sequelize.define("users", {
-    'UserID': {
+const Book = sequelize.define("books", {
+    'BookID': {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     allowNull: false,
     primaryKey: true
     },
-    "Full Name": {
+    "Category": {
     type: DataTypes.STRING,
     allowNull: false
     },
-    "Username": {
+    'Title': {
     type: DataTypes.STRING,
     allowNull: false
     },
-    'Password': {
+    'Author': {
     type: DataTypes.STRING,
     allowNull: false
     },
-    'Gender': {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    "Dob": {
+    "Publication Date": {
     type: DataTypes.DATE,
-    }
+    },
+    "Page count": {
+      type: DataTypes.INTEGER,
+      }
 }, {
   timestamps: false // Disable timestamps (createdAt and updatedAt)
 });
@@ -37,4 +36,4 @@ sequelize.sync().then(() => {
   console.error('Unable to create table: ', error);
 });
 
-module.exports = User;
+module.exports = Book;
