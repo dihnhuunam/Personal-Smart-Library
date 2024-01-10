@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, StyleSheet, TouchableOpacity, Alert } from 'react-native'
 import { Text } from 'react-native-paper'
 import Background from '../components/Background'
 import Logo from '../components/Logo'
@@ -19,6 +19,7 @@ export default function RegisterScreen({ navigation }) {
   const [email, setEmail] = useState({ value: '', error: '' })
   const [password, setPassword] = useState({ value: '', error: '' })
   const [loading, setLoading] = useState(false);
+  const [registrationSuccess, setRegistrationSuccess] = useState(false);
   const auth = FIREBASE_AUTH;
   
 
@@ -26,7 +27,21 @@ export default function RegisterScreen({ navigation }) {
     setLoading(true);
     try{
       const response = await createUserWithEmailAndPassword(auth, email.value, password.value);
-      console.log(response);
+      Alert.alert('Registration Successful', 'You have successfully registered!', [
+        {
+          text: 'Done, please login',
+          onPress: () => {
+            navigation.replace('LoginScreen');
+          },
+          
+        },
+        {
+            text: 'Continue sign up',
+            onPress: () => {
+            },
+            
+          },
+      ]);
     }
     catch (error){
       console.log(error);
@@ -36,21 +51,21 @@ export default function RegisterScreen({ navigation }) {
       setLoading(false);
     }
   }
-  const onSignUpPressed = () => {
-    const nameError = nameValidator(name.value)
-    const emailError = emailValidator(email.value)
-    const passwordError = passwordValidator(password.value)
-    if (emailError || passwordError || nameError) {
-      setName({ ...name, error: nameError })
-      setEmail({ ...email, error: emailError })
-      setPassword({ ...password, error: passwordError })
-      return
-    }
-    navigation.reset({
-      index: 0,
-      routes: [{ name: 'Dashboard' }],
-    })
-  }
+//   const onSignUpPressed = () => {
+//     const nameError = nameValidator(name.value)
+//     const emailError = emailValidator(email.value)
+//     const passwordError = passwordValidator(password.value)
+//     if (emailError || passwordError || nameError) {
+//       setName({ ...name, error: nameError })
+//       setEmail({ ...email, error: emailError })
+//       setPassword({ ...password, error: passwordError })
+//       return
+//     }
+//     navigation.reset({
+//       index: 0,
+//       routes: [{ name: 'Dashboard' }],
+//     })
+//   }
 
   return (
     <Background>
@@ -93,6 +108,12 @@ export default function RegisterScreen({ navigation }) {
       >
         Sign Up
       </Button>
+      {registrationSuccess && (
+        <View>
+          <Text style={{ color: 'green', marginTop: 10 }}>Registration Successful!</Text> 
+        </View>
+      )}
+
       <View style={styles.row}>
         <Text>Already have an account? </Text>
         <TouchableOpacity onPress={() => navigation.replace('LoginScreen')}>
