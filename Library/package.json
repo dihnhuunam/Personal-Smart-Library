@@ -24,7 +24,7 @@
     "firebase": "^10.7.1",
     "mariadb": "^3.2.3",
     "mysql": "^2.18.1",
-    "mysql2": "^3.6.5",
+    "mysql2": "^3.7.0",
     "oracledb": "^6.3.0",
     "pg": "^8.11.3",
     "pg-hstore": "^2.3.4",
@@ -42,7 +42,10 @@
     "tedious": "^16.6.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "^7.23.7",
+    "@babel/node": "^7.22.19",
+    "@babel/preset-env": "^7.23.8",
+    "sequelize-cli": "^6.6.2"
   },
   "private": true,
   "author": "",

@@ -1,7 +1,8 @@
+require('dotenv').config()
+require('./database')
 const express = require('express');
 const cors = require('cors');
-require('dotenv').config()
-const initRoutes = require('../backend/routes')
+const initRoutes = require('./routes')
 
 const app =express()
 app.use(cors({
