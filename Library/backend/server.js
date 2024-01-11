@@ -1,23 +1,33 @@
 require('dotenv').config()
-require('./database')
-const express = require('express');
-const cors = require('cors');
-const initRoutes = require('./routes')
+const express = require('express')
+const cors = require('cors')
 
-const app =express()
+const app = express()
+
+// middleware
+
 app.use(cors({
   origin: process.env.CLIENT_URL,
   methods: ['GET', 'POST', 'PUT', 'DELETE']
 }))
-
-//CRUD
 app.use(express.json())
-app.use(express.urlencoded({ extended: true}))
+app.use(express.urlencoded({ extended: true }))
 
-initRoutes(app)
+//testing api
+// app.get('/', (req, res) => {
+//     res.json({ messeage: 'hello from api'})
+// })
 
-const PORT = process.env.PORT || 888
+// routers
+const router = require('./routes/bookRouter.js')
+app.use('/api/books', router)
 
-const listener = app.listen(PORT, () => {
-  console.log("SERVER IS RUNNING ON THE PORT " + listener.address().port);
+//port
+
+const PORT = process.env.PORT || 8080
+
+//server
+
+app.listen(PORT, () => {
+    console.log(`server is running on port ${PORT}`)
 })

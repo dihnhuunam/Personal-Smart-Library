@@ -1,7 +1,5 @@
-const { Sequelize, DataTypes } = require("sequelize");
-const sequelize = require('../database');
-
-const User = sequelize.define("users", {
+module.exports = (sequelize, DataTypes) => {
+  const User = sequelize.define("users", {
     'UserID': {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -30,11 +28,5 @@ const User = sequelize.define("users", {
 }, {
   timestamps: false // Disable timestamps (createdAt and updatedAt)
 });
-
-sequelize.sync().then(() => {
-  console.log('Users table created successfully!');
-}).catch((error) => {
-  console.error('Unable to create table: ', error);
-});
-
-module.exports = User;
+  return User
+}
