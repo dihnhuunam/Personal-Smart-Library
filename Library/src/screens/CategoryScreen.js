@@ -15,7 +15,7 @@ export default function CategoryScreen({ navigation }) {
   }, []);
 
   const getListPhotos = () => {
-    const apiURL = 'https://65983853668d248edf244fc9.mockapi.io/book';
+    const apiURL = 'http://192.168.1.2:5000/api/books/allBooks';
     fetch(apiURL)
       .then((res) => res.json())
       .then((resJson) => {
@@ -34,7 +34,7 @@ export default function CategoryScreen({ navigation }) {
       <View style={styles.item}>
         <Image
           style={styles.image}
-          source={{ uri: item.Image }}
+          source={{ uri: item.ImageURL }}
           resizeMode="contain"
         />
         <View style={styles.wrapText}>
@@ -46,7 +46,7 @@ export default function CategoryScreen({ navigation }) {
               console.log('Button pressed for item:', item);
             }}
           >
-            <Text style={styles.buttonText}>Press me</Text>
+            <Text style={styles.buttonText}>Add</Text>
           </TouchableOpacity>
         </View>
       </View>

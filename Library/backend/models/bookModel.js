@@ -10,6 +10,10 @@ module.exports = (sequelize, DataTypes) => {
     type: DataTypes.STRING,
     allowNull: false
     },
+    "ImageURL": {
+    type: DataTypes.STRING,
+    allowNull: false
+    },
     'Title': {
     type: DataTypes.STRING,
     allowNull: false
@@ -19,13 +23,18 @@ module.exports = (sequelize, DataTypes) => {
     allowNull: false
     },
     "Publication Date": {
-    type: DataTypes.DATE,
+    type: DataTypes.DATEONLY,
     },
     "Page count": {
       type: DataTypes.INTEGER,
-      }
+    }
 }, {
   timestamps: false // Disable timestamps (createdAt and updatedAt)
 })
   return Book
 }
+
+
+
+
+

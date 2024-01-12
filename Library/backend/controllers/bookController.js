@@ -6,22 +6,41 @@ const Book = db.books
 // functions
 
 //1. Add Book
+// const addBook = async (req, res) => {
+
+//     const id = req.params.id
+
+//     let data = {
+//         BookID: id,
+//         Category: req.body.Category,
+//         ImageURL: req.body.ImageURL,
+//         Title: req.body.Title,
+//         Author: req.body.Author,
+//         'Publication Date': req.body['Publication Date'],
+//         'Page count': req.body['Page count'],
+//     }
+
+//     const book = await Book.create(data)
+//     res.status(200).send(book)
+
+// }
 const addBook = async (req, res) => {
+    try {
+        let data = {
+            Category: req.body.Category,
+            ImageURL: req.body.ImageURL,
+            Title: req.body.Title,
+            Author: req.body.Author,
+            'Publication Date': req.body['Publication Date'],
+            'Page count': req.body['Page count'],
+        }
 
-    const id = req.params.id
-
-    let data = {
-        BookID: id,
-        Category: req.body.Category,
-        Title: req.body.Title,
-        Author: req.body.Author,
-        'Publication Date': req.body['Publication Date'],
-        'Page count': req.body['Page count'],
+        const book = await Book.create(data);
+        res.status(200).send(book);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
     }
-
-    const book = await Book.create(data)
-    res.status(200).send(book)
-
 }
 
 // 2. Get All Books
