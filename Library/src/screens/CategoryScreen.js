@@ -53,6 +53,30 @@ export default function CategoryScreen({ navigation }) {
     );
   };
 
+  // const renderItem = ({ item }) => {
+  //   return (
+  //     <View style={styles.item}>
+  //       <Image
+  //         style={styles.image}
+  //         source={{ uri: item.ImageURL }}
+  //         resizeMode="contain"
+  //       />
+  //       <View style={styles.itemDetails}>
+  //         <Text style={styles.title}>{item.Title}</Text>
+  //         <TouchableOpacity
+  //           style={styles.button}
+  //           onPress={() => {
+  //             // Handle button press action
+  //             console.log('Button pressed for item:', item);
+  //           }}
+  //         >
+  //           <Text style={styles.buttonText}>Add</Text>
+  //         </TouchableOpacity>
+  //       </View>
+  //     </View>
+  //   );
+  // };
+  
   const handleSearch = (text) => {
     setSearchQuery(text);
     const filteredData = originalData.filter((item) =>
@@ -128,10 +152,10 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginBottom: 8,
   },
-  button: {
+button: {
     backgroundColor: 'green',
-    paddingVertical: 8, // Adjust the vertical padding
-    paddingHorizontal: 16, // Adjust the horizontal padding
+    paddingVertical: 6, // Adjust the vertical padding to make it smaller
+    paddingHorizontal: 12, // Adjust the horizontal padding to make it smaller
     borderRadius: 4,
     marginLeft: 8,
   },
@@ -163,5 +187,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  itemDetails: {
+    flex: 1,
+    marginLeft: 8,
+    justifyContent: 'center',
+  },
+  title: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  
 });
 
