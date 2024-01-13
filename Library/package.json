@@ -9,9 +9,11 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo/webpack-config": "^19.0.0",
     "@react-native-async-storage/async-storage": "1.18.2",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-native-firebase/app": "^18.7.3",
+    "@react-native-firebase/database": "^18.7.3",
     "@react-navigation/drawer": "^6.6.6",
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/native-stack": "^6.9.17",
@@ -24,11 +26,12 @@
     "firebase": "^10.7.1",
     "mariadb": "^3.2.3",
     "mysql": "^2.18.1",
-    "mysql2": "^3.6.5",
+    "mysql2": "^3.7.0",
     "oracledb": "^6.3.0",
     "pg": "^8.11.3",
     "pg-hstore": "^2.3.4",
     "react": "18.2.0",
+    "react-dom": "18.2.0",
     "react-native": "0.72.6",
     "react-native-gesture-handler": "~2.12.0",
     "react-native-paper": "^5.11.4",
@@ -37,12 +40,17 @@
     "react-native-screens": "~3.22.0",
     "react-native-select-dropdown": "^3.4.0",
     "react-native-status-bar-height": "^2.6.0",
+    "react-native-web": "~0.19.6",
     "sequelize": "^6.35.2",
-    "sqlite3": "^5.1.7-rc.0",
+    "sqlite3": "^5.1.7",
     "tedious": "^16.6.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "^7.23.7",
+    "@babel/node": "^7.22.19",
+    "@babel/preset-env": "^7.23.8",
+    "nodemon": "^3.0.2",
+    "sequelize-cli": "^6.6.2"
   },
   "private": true,
   "author": "",

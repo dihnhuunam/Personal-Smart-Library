@@ -1,0 +1,23 @@
+INSERT INTO `books` (`BookID`, `Category`, `ImageURL`, `Title`, `Author`, `Description`, `PublicationDate`, `PageCount`) VALUES
+(1, 'Fiction', 'https://i.postimg.cc/mkDbzMRr/The-Great-Gatsby.webp', 'The Great Gatsby', 'F. Scott Fitzgerald', 'A classic novel depicting the roaring twenties and the American Dream.', '1925-04-10', 180),
+(2, 'Science Fiction', 'https://i.postimg.cc/HLzDwx68/Dune.jpg', 'Dune', 'Frank Herbert', 'A science fiction epic set in a distant future amidst political intrigue and desert planets.', '1965-06-01', 412),
+(3, 'Mystery', 'https://i.postimg.cc/Nj1w0bT4/The-Da-Vinci-Code.jpg', 'The Da Vinci Code', 'Dan Brown', 'A gripping mystery that intertwines art, history, and religion.', '2003-03-18', 454),
+(4, 'Thriller', 'https://i.postimg.cc/Xv46BFk0/the-girl-on-the-train-by-paula-hawkins-bookworm-hanoi-bd236935-45dc-4b2d-93fb-b8a34b74d596.webp', 'The Girl on the Train', 'Paula Hawkins', 'A psychological thriller that explores the complexities of memory and perception.', '2015-01-13', 336),
+(5, 'Fantasy', 'https://i.postimg.cc/g29Wd1wj/81-Fvx-UUWe1-L-AC-UF1000-1000-QL80.jpg', 'The Hobbit', 'J.R.R. Tolkien', 'An epic fantasy journey through Middle-earth with hobbits, dwarves, and dragons.', '1937-09-21', 310),
+(6, 'Romance', 'https://i.postimg.cc/9Xn2gDCG/9781847493699.jpg', 'Pride and Prejudice', 'Jane Austen', 'A timeless love story featuring wit, social commentary, and memorable characters.', '1813-01-28', 279),
+(7, 'Historical Fiction', 'https://i.postimg.cc/pX5HwPL3/175660-ml-1512820.jpg', 'The Book Thief', 'Markus Zusak', 'Set during World War II, a unique perspective on humanity narrated by Death.', '2005-03-14', 552),
+(8, 'Biography', 'https://i.postimg.cc/0jFqzBct/41b-TUx-W9-L.jpg', 'Steve Jobs', 'Walter Isaacson', 'A biography of the co-founder of Apple, exploring his innovations and personality.', '2011-10-24', 630),
+(9, 'Science', 'https://i.postimg.cc/PJPjrjzp/a-brief-history-of-time-stephen-hawking.webp', 'A Brief History of Time', 'Stephen Hawking', 'An exploration of the universe\'s mysteries and fundamental concepts of physics.', '1988-04-01', 256),
+(10, 'Self-Help', 'https://i.postimg.cc/JnT8LnJC/download.jpg', 'The 7 Habits of Highly Effective People', 'Stephen R. Covey', 'A guide to personal and professional effectiveness through habits and principles.', '1989-08-15', 381),
+(11, 'Dystopian', 'https://i.postimg.cc/hj4n6xX0/s-l1200.webp', '1984', 'George Orwell', 'A dystopian classic portraying a totalitarian society and the consequences of thought control.', '1949-06-08', 328),
+(12, 'Adventure', 'https://i.postimg.cc/2SX4Xp2c/71-Wj5iqd-J1-L-AC-UF1000-1000-QL80.jpg', 'The Adventures of Sherlock Holmes', 'Arthur Conan Doyle', 'Classic detective stories featuring Sherlock Holmes and Dr. Watson.', '1892-10-14', 307),
+(13, 'Humor', 'https://i.postimg.cc/YqbvsCNc/51vfu-NNWMTS.jpg', 'The Hitchhiker\'s Guide to the Galaxy', 'Douglas Adams', 'An absurd and humorous journey through space with an unwitting human and his alien friend.', '1979-10-12', 193),
+(14, 'Young Adult', 'https://i.postimg.cc/nhrXbfTX/The-Hunger-Games-cover.jpg', 'The Hunger Games', 'Suzanne Collins', 'In a dystopian future, young tributes fight for survival in a televised spectacle.', '2008-09-14', 374),
+(15, 'Crime', 'https://i.postimg.cc/zfR3vws5/41-AEm-QBy-ZRL-AC-UF1000-1000-QL80.jpg', 'The Godfather', 'Mario Puzo', 'A crime novel exploring the powerful Italian-American Mafia family.', '1969-03-10', 448),
+(16, 'Horror', 'https://i.postimg.cc/gJVJqzcT/41d-L6-Z-FZe-L-AC-UF1000-1000-QL80.jpg', 'Dracula', 'Bram Stoker', 'A gothic horror novel featuring the infamous vampire Count Dracula.', '1897-05-26', 418),
+(17, 'Non-Fiction', 'https://i.postimg.cc/qqp71PzM/716-E6d-Q4-BXL-AC-UF1000-1000-QL80.jpg', 'Sapiens: A Brief History of Humankind', 'Yuval Noah Harari', 'An exploration of human history from ancient times to the present.', '2011-02-10', 443),
+(18, 'Travel', 'https://i.postimg.cc/SsFRM249/61-A-Ldm-TESL-AC-UF1000-1000-QL80.jpg', 'Into the Wild', 'Jon Krakauer', 'A true story of adventure and self-discovery in the Alaskan wilderness.', '1996-01-13', 207),
+(19, 'Poetry', 'https://i.postimg.cc/GhcBKyyJ/9781324093008-300.jpg', 'The Waste Land', 'T.S. Eliot', 'A modernist poem exploring the disillusionment and fragmentation of post-World War I society.', '1922-10-02', 64),
+(20, 'Classic', 'https://i.postimg.cc/DwN87pYB/images.jpg', 'To Kill a Mockingbird', 'Harper Lee', 'A powerful novel addressing racial injustice and moral growth in the American South.', '1960-07-11', 281);
+
+
