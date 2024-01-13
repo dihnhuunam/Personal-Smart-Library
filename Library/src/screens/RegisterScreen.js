@@ -11,32 +11,16 @@ import { theme } from '../core/theme'
 import { emailValidator } from '../helpers/emailValidator'
 import { passwordValidator } from '../helpers/passwordValidator'
 import { nameValidator } from '../helpers/nameValidator'
-import { FIREBASE_AUTH } from '../../firebaseConfig'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
 
 export default function RegisterScreen({ navigation }) {
   const [name, setName] = useState({ value: '', error: '' })
   const [email, setEmail] = useState({ value: '', error: '' })
   const [password, setPassword] = useState({ value: '', error: '' })
-  const [loading, setLoading] = useState(false);
-  const auth = FIREBASE_AUTH;
-  
+  const [gender, setGender] = useState({ value: '', error: '' })
+  const [dob, setDob] = useState({ value: '', error: '' })
 
-  const signUp = async () => {
-    setLoading(true);
-    try{
-      const response = await createUserWithEmailAndPassword(auth, email.value, password.value);
-      console.log(response);
-    }
-    catch (error){
-      console.log(error);
-      alert('Sign in failed ' +error.message );
-    }
-    finally {
-      setLoading(false);
-    }
-  }
-  const onSignUpPressed = () => {
+
+  const onSignUpPressed = async () => {
     const nameError = nameValidator(name.value)
     const emailError = emailValidator(email.value)
     const passwordError = passwordValidator(password.value)
@@ -45,6 +29,34 @@ export default function RegisterScreen({ navigation }) {
       setEmail({ ...email, error: emailError })
       setPassword({ ...password, error: passwordError })
       return
+    }
+    try {
+      const response = await fetch('http://192.168.1.2:5000/api/users/addUser', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          FullName: name.value,
+          Email: email.value,
+          Password: password.value,
+          Gender: gender.value,
+          Dob: dob.value
+        }),
+      });
+
+      if (response.ok) {
+        // User registered successfully, navigate to the dashboard or show a success message
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'Dashboard' }],
+        });
+      } else {
+        // Handle registration error
+        console.error('Error registering user:', response.status, await response.text());
+      }
+    } catch (error) {
+      console.error('Error connecting to the server:', error);
     }
     navigation.reset({
       index: 0,
@@ -58,13 +70,29 @@ export default function RegisterScreen({ navigation }) {
       <Logo />
       <Header>Create Account</Header>
       <TextInput
-        label="Name"
+        label="Full Name"
         returnKeyType="next"
         value={name.value}
         onChangeText={(text) => setName({ value: text, error: '' })}
         error={!!name.error}
         errorText={name.error}
       />
+      <TextInput
+        label="Date Of Birth"
+        returnKeyType="next"
+        value={dob.value}
+        onChangeText={(text) => setDob({ value: text, error: '' })}
+        error={!!dob.error}
+        errorText={dob.error}
+      />
+        <TextInput
+        label="Gender"
+        returnKeyType="next"
+        value={gender.value}
+        onChangeText={(text) => setGender({ value: text, error: '' })}
+        error={!!gender.error}
+        errorText={gender.error}
+      />      
       <TextInput
         label="Email"
         returnKeyType="next"
@@ -88,7 +116,7 @@ export default function RegisterScreen({ navigation }) {
       />
       <Button
         mode="contained"
-        onPress={signUp}
+        onPress={onSignUpPressed}
         style={{ marginTop: 24 }}
       >
         Sign Up

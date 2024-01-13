@@ -12,8 +12,8 @@ const addUser = async (req, res) => {
     const id = req.params.id;
     let data = {
         UserID: id,
-        "Full Name": req.body["Full Name"],
-        Username: req.body.Username,
+        FullName: req.body.FullName,
+        Email: req.body.Email,
         Password: req.body.Password,
         Gender: req.body.Gender,
         Dob: req.body.Dob,
@@ -82,4 +82,5 @@ module.exports = {
     updateUser,
     deleteUser,
 };
+
 

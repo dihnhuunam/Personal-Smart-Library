@@ -14,8 +14,9 @@ const addBook = async (req, res) => {
         ImageURL: req.body.ImageURL,
         Title: req.body.Title,
         Author: req.body.Author,
-        'Publication Date': req.body['Publication Date'],
-        'Page count': req.body['Page count'],
+        Description: req.body.Description,
+        PublicationDate: req.body.PublicationDate,
+        Pagecount: req.body.PageCount,
     };
     try {
         const book = await Book.create(data);

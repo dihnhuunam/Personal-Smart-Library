@@ -6,11 +6,11 @@ module.exports = (sequelize, DataTypes) => {
     allowNull: false,
     primaryKey: true
     },
-    "Full Name": {
+    "FullName": {
     type: DataTypes.STRING,
     allowNull: false
     },
-    "Username": {
+    "Email": {
     type: DataTypes.STRING,
     allowNull: false
     },
@@ -30,3 +30,5 @@ module.exports = (sequelize, DataTypes) => {
 });
   return User
 }
+
+
