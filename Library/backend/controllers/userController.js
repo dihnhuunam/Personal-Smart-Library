@@ -1,5 +1,4 @@
 // userController.js
-
 const db = require('../models');
 
 // model

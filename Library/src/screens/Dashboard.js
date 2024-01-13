@@ -1,14 +1,14 @@
-import React from 'react'
 import Background from '../components/Background'
 import Logo from '../components/Logo'
 import Header from '../components/Header'
 import Button from '../components/Button'
+import React from 'react';
 
 export default function Dashboard({ navigation }) {
   return (
     <Background>
       <Logo />
-      <Header>Hello ...</Header>
+      <Header>Hello {data.FullName}</Header>
       <Button 
         mode="outlined"
         icon="account-circle"
@@ -26,16 +26,9 @@ export default function Dashboard({ navigation }) {
       <Button 
         mode="outlined"
         icon="progress-pencil"
-        onPress={() => {} }    
+        onPress={() => {navigation.navigate('MyLibraryScreen')}}    
       >
         My Library
-      </Button>
-      <Button 
-        mode="outlined"
-        icon="file-chart"
-        onPress={() => {} }  
-      >
-        Statistic
       </Button>
       <Button
         mode="outlined"
