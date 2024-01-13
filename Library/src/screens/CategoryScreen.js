@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, FlatList, Image, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { theme } from '../core/theme'
 
-
-export default function CategoryScreen({ navigation }) {
+export default function DetailScreen({ navigation }) {
   const [data, setData] = useState([]);
   const [originalData, setOriginalData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -51,6 +50,14 @@ export default function CategoryScreen({ navigation }) {
     }
   };
 
+  const handleSearch = (text) => {
+    setSearchQuery(text);
+    const filteredData = originalData.filter((item) =>
+      item.Title.toLowerCase().includes(text.toLowerCase())
+    );
+    setData(filteredData);
+  };
+
   const renderItem = ({ item }) => {
     return (
       <View style={styles.item}>
@@ -62,24 +69,22 @@ export default function CategoryScreen({ navigation }) {
         <View style={styles.itemDetails}>
           <Text style={styles.title}>{item.Title}</Text>
           <Text style={styles.author}>{item.Author}</Text>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={handleAddButtonPress}
-          >
-            <Text style={styles.buttonText}>Add</Text>
-          </TouchableOpacity>
+          <View style={styles.buttonsContainer}>
+            <TouchableOpacity style={styles.button} onPress={handleAddButtonPress}>
+              <Text style={styles.buttonText}>Add</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.detailsButton}
+              onPress={() => navigation.navigate('DetailScreen', { selectedBook: item })}
+            >
+              <Text style={styles.buttonText}>Details</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     );
   };
-
-  const handleSearch = (text) => {
-    setSearchQuery(text);
-    const filteredData = originalData.filter((item) =>
-      item.Title.toLowerCase().includes(text.toLowerCase())
-    );
-    setData(filteredData);
-  };
+  
 
   return (
     <SafeAreaView style={styles.container}>
@@ -195,13 +200,20 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: theme.colors.primary, 
+    color: theme.colors.primary,
   },
 
   author: {
     fontSize: 16,
-    color: theme.colors.secondary, 
+    color: theme.colors.secondary,
   },
-
+  detailsButton: {
+    backgroundColor: 'blue', // Choose a color for the Details button
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 4,
+    marginLeft: 8,
+    marginTop: 8,
+  },
 });
 
