@@ -1,1 +1,2 @@
-GET http://localhost:5000/api/v1/user
+GET http://localhost:5000/api/books/allBooks
+# POST http://localhost:5000/api/books/addBook
