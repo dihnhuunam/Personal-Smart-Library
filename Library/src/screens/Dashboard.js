@@ -8,7 +8,7 @@ export default function Dashboard({ navigation }) {
   return (
     <Background>
       <Logo />
-      <Header>Hello {data.FullName}</Header>
+      <Header>Hello</Header>
       <Button 
         mode="outlined"
         icon="account-circle"
