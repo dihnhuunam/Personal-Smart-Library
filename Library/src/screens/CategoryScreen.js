@@ -1,20 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, SafeAreaView, FlatList, Image, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
-import { theme } from '../core/theme'
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  FlatList,
+  Image,
+  TextInput,
+  TouchableOpacity,
+  ActivityIndicator,
+} from 'react-native';
+import { theme } from '../core/theme';
 
-export default function DetailScreen({ navigation }) {
+export default function Category({ navigation }) {
   const [data, setData] = useState([]);
   const [originalData, setOriginalData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    getListPhotos();
-    return () => { }; // Clean-up function
+    getListBooks();
+    return () => {};
   }, []);
 
-  const getListPhotos = () => {
-    const apiURL = 'http://192.168.1.2:5000/api/books/getAllBooks';  //thay bang api cua get books
+  const getListBooks = () => {
+    const apiURL = 'http://192.168.1.2:5000/api/books/getAllBooks';
     fetch(apiURL)
       .then((res) => res.json())
       .then((resJson) => {
@@ -23,14 +33,14 @@ export default function DetailScreen({ navigation }) {
         setLoading(false);
       })
       .catch((error) => {
-        console.log('Error: ', error);
-        setLoading(false); // Set loading to false in case of an error
+        console.error('Error fetching data:', error);
+        setLoading(false);
       });
   };
 
-  const handleAddButtonPress = async () => {
+  const handleAddButtonPress = async (item) => {
     try {
-      const apiURL = 'http://192.168.1.2:5000/api/other-database/addItem'; //thay bang api cua personal library
+      const apiURL = 'http://192.168.1.2:5000/api/other-database/addItem';
       const response = await fetch(apiURL, {
         method: 'POST',
         headers: {
@@ -41,7 +51,6 @@ export default function DetailScreen({ navigation }) {
 
       if (response.ok) {
         console.log('Item added to another database:', item);
-        // You can update your UI or state accordingly
       } else {
         console.log('Failed to add item to another database');
       }
@@ -61,16 +70,12 @@ export default function DetailScreen({ navigation }) {
   const renderItem = ({ item }) => {
     return (
       <View style={styles.item}>
-        <Image
-          style={styles.image}
-          source={{ uri: item.ImageURL }}
-          resizeMode="contain"
-        />
+        <Image style={styles.image} source={{ uri: item.ImageURL }} resizeMode="contain" />
         <View style={styles.itemDetails}>
           <Text style={styles.title}>{item.Title}</Text>
           <Text style={styles.author}>{item.Author}</Text>
           <View style={styles.buttonsContainer}>
-            <TouchableOpacity style={styles.button} onPress={handleAddButtonPress}>
+            <TouchableOpacity style={styles.button} onPress={() => handleAddButtonPress(item)}>
               <Text style={styles.buttonText}>Add</Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -84,16 +89,12 @@ export default function DetailScreen({ navigation }) {
       </View>
     );
   };
-  
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.headerContainer}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-          <Image
-            style={{ width: 24, height: 24 }}
-            source={require('../assets/arrow_back.png')}
-          />
+          <Image style={{ width: 24, height: 24 }} source={require('../assets/arrow_back.png')} />
         </TouchableOpacity>
         <Text style={styles.headerText}>List of Books</Text>
       </View>
@@ -123,7 +124,7 @@ const styles = StyleSheet.create({
     padding: 8,
   },
   list: {
-    // flex: 1,
+    flex: 1,
   },
   item: {
     flexDirection: 'row',
@@ -135,15 +136,6 @@ const styles = StyleSheet.create({
     height: 200,
     flex: 1,
   },
-  wrapText: {
-    flex: 1,
-    marginTop: 16,
-    marginLeft: 8,
-    justifyContent: 'center',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center', // Center the items horizontally
-  },
   searchInput: {
     margin: 15,
     paddingHorizontal: 16,
@@ -153,25 +145,20 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginBottom: 8,
   },
-  button: {
-    backgroundColor: 'green',
-    paddingVertical: 6,
-    paddingHorizontal: 12,
-    borderRadius: 4,
-    marginLeft: 16,
-    marginTop: 8
+  buttonsContainer: {
+    flexDirection: 'row',
+    marginTop: 8,
   },
   buttonText: {
     color: 'white',
-    justifyContent: 'center',
-    alignItems: 'center',
+    textAlign: 'center',
   },
   headerContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 8,
-    marginTop: 8
+    marginTop: 8,
   },
   backButton: {
     position: 'absolute',
@@ -190,7 +177,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-
   itemDetails: {
     flex: 1,
     marginLeft: 8,
@@ -202,18 +188,24 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: theme.colors.primary,
   },
-
   author: {
     fontSize: 16,
     color: theme.colors.secondary,
   },
-  detailsButton: {
-    backgroundColor: 'blue', // Choose a color for the Details button
+  button: {
+    flex: 1,
+    backgroundColor: 'green',
     paddingVertical: 6,
     paddingHorizontal: 12,
     borderRadius: 4,
-    marginLeft: 8,
-    marginTop: 8,
+    marginLeft: 16,
+  },
+  detailsButton: {
+    flex: 1,
+    backgroundColor: 'blue',
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 4,
+    marginLeft: 6,
   },
 });
-

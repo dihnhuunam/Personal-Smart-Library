@@ -51,12 +51,12 @@ const styles = StyleSheet.create({
         height: 24,
     },
     headerText: {
-        fontSize: 28,  // Increase font size
+        fontSize: 28, 
         color: theme.colors.primary,
         fontWeight: 'bold',
     },
     detailsContainer: {
-        alignItems: 'flex-start',  // Align content to the left
+        alignItems: 'flex-start',  
     },
     detailsImage: {
         width: 200,
@@ -64,30 +64,30 @@ const styles = StyleSheet.create({
         marginBottom: 16,
     },
     detailsTitle: {
-        fontSize: 22,  // Increase font size
+        fontSize: 22,  
         fontWeight: 'bold',
         color: theme.colors.primary,
         marginBottom: 8,
     },
     detailsCategory: {
-        fontSize: 18,  // Increase font size
+        fontSize: 18,  
         color: theme.colors.secondary,
         marginBottom: 8,
     },
     detailsAuthor: {
-        fontSize: 18,  // Increase font size
+        fontSize: 18,  
         color: theme.colors.secondary,
         marginBottom: 8,
     },
     detailsPublicationDate: {
-        fontSize: 16,  // Increase font size
+        fontSize: 16,  
         color: theme.colors.text,
         marginBottom: 8,
     },
     detailsDescription: {
-        fontSize: 16,  // Increase font size
+        fontSize: 16, 
         color: theme.colors.text,
-        textAlign: 'left',  // Align text to the left
+        textAlign: 'left',  
         marginBottom: 16,
     },
 });
