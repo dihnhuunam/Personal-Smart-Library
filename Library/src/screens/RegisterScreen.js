@@ -11,6 +11,8 @@ import { theme } from '../core/theme'
 import { emailValidator } from '../helpers/emailValidator'
 import { passwordValidator } from '../helpers/passwordValidator'
 import { nameValidator } from '../helpers/nameValidator'
+import { FIREBASE_AUTH } from '../../firebaseConfig'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
 
 export default function RegisterScreen({ navigation }) {
   const [name, setName] = useState({ value: '', error: '' })
@@ -71,29 +73,13 @@ export default function RegisterScreen({ navigation }) {
       <Logo />
       <Header>Create Account</Header>
       <TextInput
-        label="Full Name"
+        label="Name"
         returnKeyType="next"
         value={name.value}
         onChangeText={(text) => setName({ value: text, error: '' })}
         error={!!name.error}
         errorText={name.error}
       />
-      <TextInput
-        label="Date Of Birth"
-        returnKeyType="next"
-        value={dob.value}
-        onChangeText={(text) => setDob({ value: text, error: '' })}
-        error={!!dob.error}
-        errorText={dob.error}
-      />
-        <TextInput
-        label="Gender"
-        returnKeyType="next"
-        value={gender.value}
-        onChangeText={(text) => setGender({ value: text, error: '' })}
-        error={!!gender.error}
-        errorText={gender.error}
-      />      
       <TextInput
         label="Email"
         returnKeyType="next"
@@ -117,7 +103,7 @@ export default function RegisterScreen({ navigation }) {
       />
       <Button
         mode="contained"
-        onPress={onSignUpPressed}
+        onPress={signUp}
         style={{ marginTop: 24 }}
       >
         Sign Up
