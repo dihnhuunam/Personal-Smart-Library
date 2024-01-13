@@ -11,11 +11,11 @@ export default function CategoryScreen({ navigation }) {
 
   useEffect(() => {
     getListPhotos();
-    return () => {}; // Clean-up function
+    return () => { }; // Clean-up function
   }, []);
 
   const getListPhotos = () => {
-    const apiURL = 'http://192.168.1.2:5000/api/books/allBooks';
+    const apiURL = 'http://192.168.1.2:5000/api/books/getAllBooks';  //thay bang api cua get books
     fetch(apiURL)
       .then((res) => res.json())
       .then((resJson) => {
@@ -29,6 +29,28 @@ export default function CategoryScreen({ navigation }) {
       });
   };
 
+  const handleAddButtonPress = async () => {
+    try {
+      const apiURL = 'http://192.168.1.2:5000/api/other-database/addItem'; //thay bang api cua personal library
+      const response = await fetch(apiURL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(item),
+      });
+
+      if (response.ok) {
+        console.log('Item added to another database:', item);
+        // You can update your UI or state accordingly
+      } else {
+        console.log('Failed to add item to another database');
+      }
+    } catch (error) {
+      console.error('Error adding item to another database:', error);
+    }
+  };
+
   const renderItem = ({ item }) => {
     return (
       <View style={styles.item}>
@@ -37,14 +59,12 @@ export default function CategoryScreen({ navigation }) {
           source={{ uri: item.ImageURL }}
           resizeMode="contain"
         />
-        <View style={styles.wrapText}>
-          <Text>{item.Title}</Text>
+        <View style={styles.itemDetails}>
+          <Text style={styles.title}>{item.Title}</Text>
+          <Text style={styles.author}>{item.Author}</Text>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => {
-              // Handle button press action
-              console.log('Button pressed for item:', item);
-            }}
+            onPress={handleAddButtonPress}
           >
             <Text style={styles.buttonText}>Add</Text>
           </TouchableOpacity>
@@ -53,30 +73,6 @@ export default function CategoryScreen({ navigation }) {
     );
   };
 
-  // const renderItem = ({ item }) => {
-  //   return (
-  //     <View style={styles.item}>
-  //       <Image
-  //         style={styles.image}
-  //         source={{ uri: item.ImageURL }}
-  //         resizeMode="contain"
-  //       />
-  //       <View style={styles.itemDetails}>
-  //         <Text style={styles.title}>{item.Title}</Text>
-  //         <TouchableOpacity
-  //           style={styles.button}
-  //           onPress={() => {
-  //             // Handle button press action
-  //             console.log('Button pressed for item:', item);
-  //           }}
-  //         >
-  //           <Text style={styles.buttonText}>Add</Text>
-  //         </TouchableOpacity>
-  //       </View>
-  //     </View>
-  //   );
-  // };
-  
   const handleSearch = (text) => {
     setSearchQuery(text);
     const filteredData = originalData.filter((item) =>
@@ -122,7 +118,7 @@ const styles = StyleSheet.create({
     padding: 8,
   },
   list: {
-    flex: 1,
+    // flex: 1,
   },
   item: {
     flexDirection: 'row',
@@ -130,8 +126,8 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   image: {
-    width: 100,
-    height: 150,
+    width: 200,
+    height: 200,
     flex: 1,
   },
   wrapText: {
@@ -152,15 +148,18 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginBottom: 8,
   },
-button: {
+  button: {
     backgroundColor: 'green',
-    paddingVertical: 6, // Adjust the vertical padding to make it smaller
-    paddingHorizontal: 12, // Adjust the horizontal padding to make it smaller
+    paddingVertical: 6,
+    paddingHorizontal: 12,
     borderRadius: 4,
-    marginLeft: 8,
+    marginLeft: 16,
+    marginTop: 8
   },
   buttonText: {
     color: 'white',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   headerContainer: {
     flexDirection: 'row',
@@ -170,7 +169,6 @@ button: {
     marginTop: 8
   },
   backButton: {
-    // Updated styles for the back button
     position: 'absolute',
     left: 8,
     justifyContent: 'center',
@@ -187,15 +185,23 @@ button: {
     justifyContent: 'center',
     alignItems: 'center',
   },
+
   itemDetails: {
     flex: 1,
     marginLeft: 8,
     justifyContent: 'center',
+    alignItems: 'center',
   },
   title: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
+    color: theme.colors.primary, 
   },
-  
+
+  author: {
+    fontSize: 16,
+    color: theme.colors.secondary, 
+  },
+
 });
 
