@@ -75,12 +75,34 @@ const deleteUser = async (req, res) => {
     }
 };
 
-module.exports = {
+// 6. Update by Email
+const updateUserByEmail = async (req, res) => {
+    const { Email } = req.body;
+  
+    try {
+      const [rowsUpdated, [updatedUser]] = await User.update(
+        req.body,
+        { where: { Email }, returning: true }
+      );
+  
+      if (rowsUpdated > 0) {
+        res.json(updatedUser);
+      } else {
+        res.status(404).json({ message: 'User not found' });
+      }
+    } catch (error) {
+      console.error('Error updating user by email:', error);
+      res.status(500).json({ message: 'Internal Server Error' });
+    }
+  };
+
+  module.exports = {
     addUser,
     getAllUsers,
     getOneUser,
     updateUser,
+    updateUserByEmail,
     deleteUser,
-};
-
-
+  };
+  
+  

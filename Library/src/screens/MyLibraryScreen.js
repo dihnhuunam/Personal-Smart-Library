@@ -19,7 +19,7 @@ export default function MyLibraryScreen({ navigation }) {
   
       return () => clearTimeout(timer);
     }, [user?.id]); 
-  
+   
    const getList = async () => {
     const db = getDatabase(); 
  

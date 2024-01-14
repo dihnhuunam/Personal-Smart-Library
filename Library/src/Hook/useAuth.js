@@ -1,29 +1,62 @@
+// import { useEffect, useState } from "react";
+// import { onAuthStateChanged,User } from "firebase/auth";
+// import { FIREBASE_AUTH } from '../../firebaseConfig'
+
+// const auth = FIREBASE_AUTH;
+
+// export function useAuth() {
+//     const [user, setUser] = useState(null);
+
+//   useEffect(() => {
+//     const unsubscribeFromAuthStateChanged = onAuthStateChanged(auth, (user) => {
+//       if (user) {
+//         // User is signed in, see docs for a list of available properties
+//         // https://firebase.google.com/docs/reference/js/firebase.User
+//         setUser(user);
+//         // console.log('b',user);
+//       } else {
+//         // User is signed out
+//         setUser(undefined);
+//       }
+//     },[]);
+
+//     return () => unsubscribeFromAuthStateChanged();
+//   }, []);
+
+//   return {
+//     user,
+//   };
+// }
+
+
 import { useEffect, useState } from "react";
-import { onAuthStateChanged,User } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import { FIREBASE_AUTH } from '../../firebaseConfig'
 
 const auth = FIREBASE_AUTH;
 
 export function useAuth() {
-    const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const unsubscribeFromAuthStateChanged = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
-        setUser(user);
-        // console.log('b',user);
+    const unsubscribeFromAuthStateChanged = onAuthStateChanged(auth, (firebaseUser) => {
+      if (firebaseUser) {
+        // Firebase user is signed in
+        setUser(firebaseUser);
       } else {
-        // User is signed out
-        setUser(undefined);
+        // Firebase user is signed out
+        setUser(null);
       }
-    },[]);
+    });
 
     return () => unsubscribeFromAuthStateChanged();
   }, []);
 
+  // Get email from user object
+  const userEmail = user && user.email ? user.email : null;
+
   return {
     user,
+    userEmail,
   };
 }

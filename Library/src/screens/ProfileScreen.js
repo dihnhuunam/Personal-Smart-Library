@@ -15,14 +15,13 @@ export default function ProfileScreen({ navigation }) {
   });
 
   useEffect(() => {
-    // Check if user is available before fetching data
     if (user && user.email) {
-      fetchUserData(user.email); // Pass the user's email
+      fetchUserData(user.email);
     }
-  }, [user]); // Include user in the dependency array to ensure useEffect runs when user changes
+  }, [user]);
 
-  const fetchUserData = (email) => {
-    const apiURL = `http://192.168.1.4:5000/api/users/getUserByEmail?email=${email}`; // Update your API endpoint
+  const fetchUserData = () => {
+    const apiURL = `http://192.168.1.4:5000/api/users/getAllUsers`;
     fetch(apiURL)
       .then((res) => res.json())
       .then((resJson) => {
@@ -37,20 +36,17 @@ export default function ProfileScreen({ navigation }) {
   };
 
   const handleUpdateProfile = () => {
-    // Prepare the updated data
     const updatedData = {
       FullName: userData.FullName,
       Dob: userData.Dob,
-      // Add other fields as needed
     };
 
-    // Perform the PUT request to update the user data
     fetch('http://192.168.1.4:5000/api/users/updateUser', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email: user.email, ...updatedData }), // Pass the user's email
+      body: JSON.stringify({ email: user.email, ...updatedData }), 
     })
       .then((res) => res.json())
       .then((resJson) => {
@@ -81,4 +77,6 @@ export default function ProfileScreen({ navigation }) {
     </Background>
   );
 }
+
+
 
