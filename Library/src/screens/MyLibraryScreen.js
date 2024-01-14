@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, FlatList, Image, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { theme } from '../core/theme'
-import {getDatabase, ref, push, onValue} from 'firebase/database'
+import { getDatabase, ref, push, onValue } from 'firebase/database'
 import { useAuth } from '../Hook/useAuth';
 
 export default function MyLibraryScreen({ navigation }) {
@@ -12,60 +12,46 @@ export default function MyLibraryScreen({ navigation }) {
   const { user } = useAuth();
   useEffect(() => {
     const timer = setTimeout(() => {
-        getList().then(() => {
-          setLoading(false);
-        });
-      }, 1000);   
-  
-      return () => clearTimeout(timer);
-    }, [user?.id]); 
-   
-   const getList = async () => {
-    const db = getDatabase(); 
- 
+      getList().then(() => {
+        setLoading(false);
+      });
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [user?.id]);
+
+  const getList = async () => {
+    const db = getDatabase();
+
     try {
-        onValue(ref(db, 'library/' + user?.uid), (snapshot) => {
-          if (snapshot.val()) {
-            console.log('Value:', snapshot.val());
-            setData(Object.values(snapshot.val()))
-            console.log(data);
-          } else {
-            console.log('Data does not exist.');  
-          }
-        });
-      } catch (error) {
-        console.error('Error:', error);
-      }
+      onValue(ref(db, 'library/' + user?.uid), (snapshot) => {
+        if (snapshot.val()) {
+          console.log('Value:', snapshot.val());
+          setData(Object.values(snapshot.val()))
+          console.log(data);
+        } else {
+          console.log('Data does not exist.');
+        }
+      });
+    } catch (error) {
+      console.error('Error:', error);
     }
-//   const getListPhotos = () => {
-//     const apiURL = 'https://65983853668d248edf244fc9.mockapi.io/book';  //thay bang api cua get books
-//     fetch(apiURL)
-//       .then((res) => res.json())
-//       .then((resJson) => {
-//         setData(resJson);
-//         setOriginalData(resJson);
-//         setLoading(false);
-//       })
-//       .catch((error) => {
-//         console.log('Error: ', error);
-//         setLoading(false); // Set loading to false in case of an error
-//       });
-//   };  
+  }
 
   const renderItem = ({ item }) => {
     return (
       <View style={styles.item}>
         <Image
           style={styles.image}
-          source={{ uri: item.img }}
+          source={{ uri: item.ImageURL }}
           resizeMode="contain"
         />
         <View style={styles.itemDetails}>
-          <Text style={styles.title}>{item.title}</Text>
-          <Text style={styles.author}>{item.author}</Text>
+          <Text style={styles.title}>{item.Title}</Text>
+          <Text style={styles.author}>{item.AuthorName}</Text>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => {}}
+            onPress={() => navigation.navigate('Progress', { selectedBook: item })}
           >
             <Text style={styles.buttonText}>Progress</Text>
           </TouchableOpacity>
@@ -73,7 +59,7 @@ export default function MyLibraryScreen({ navigation }) {
       </View>
     );
   };
-
+ 
   const handleSearch = (text) => {
     setSearchQuery(text);
     const filteredData = originalData.filter((item) =>
@@ -81,7 +67,7 @@ export default function MyLibraryScreen({ navigation }) {
     );
     setData(filteredData);
   };
-
+ 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.headerContainer}>
@@ -106,13 +92,13 @@ export default function MyLibraryScreen({ navigation }) {
           style={styles.list}
           data={data}
           renderItem={renderItem}
-          keyExtractor={(item, index) => item.id ? `key-${item.id}` : `key-${index}`}
+          keyExtractor={(item, index) => (item.id ? `key-${item.id}` : `key-${index}`)}
         />
       )}
     </SafeAreaView>
   );
 }
- 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -138,7 +124,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center', 
+    alignItems: 'center',
   },
   searchInput: {
     margin: 15,
@@ -196,12 +182,12 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: theme.colors.primary, 
+    color: theme.colors.primary,
   },
 
   author: {
     fontSize: 16,
-    color: theme.colors.secondary, 
+    color: theme.colors.secondary,
   },
 
 });

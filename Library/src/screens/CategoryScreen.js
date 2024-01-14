@@ -12,16 +12,19 @@ export default function CategoryScreen({ navigation }) {
     const { user } = useAuth();
     const AddBook = (data) => {
         const db = getDatabase();
-        console.log(user?.uid);
+        console.log(user);
         // console.log(data);
-        const reference = ref(db, 'library/' + user?.uid);
-        push(reference, {
+        const reference = ref(db, 'library/' + user?.uid + '/'+ data.BookID);
+        const newBookRef =push(reference, {
             title: data.Title,
             img: data.ImageURL,
-            author: data.AuthorName
-
+            author: data.AuthorName,
+            pageCount: data.PageCount,
         })
-
+        const newBookKey = newBookRef.key;
+        console.log('====================================');
+        console.log(newBookKey);
+        console.log('====================================');
     }
     useEffect(() => {
         getListPhotos();
@@ -51,27 +54,6 @@ export default function CategoryScreen({ navigation }) {
         setData(filteredData);
     };
 
-    const handleAddButtonPress = async (item) => {
-        try {
-            const apiURL = 'http://192.168.1.4:5000/api/other-database/addItem';
-            const response = await fetch(apiURL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(item),
-            });
-
-            if (response.ok) {
-                console.log('Item added to another database:', item);
-            } else {
-                console.log('Failed to add item to another database');
-            }
-        } catch (error) {
-            console.error('Error adding item to another database:', error);
-        }
-    };
-
         const renderItem = ({ item }) => {
             const handleAddPress = () => {
                 AddBook(item);
@@ -81,7 +63,7 @@ export default function CategoryScreen({ navigation }) {
                 <Image style={styles.image} source={{ uri: item.ImageURL }} resizeMode="contain" />
                 <View style={styles.itemDetails}>
                     <Text style={styles.title}>{item.Title}</Text>
-                    <Text style={styles.author}>{item.Author}</Text>
+                    <Text style={styles.author}>{item.AuthorName}</Text>
                     <View style={styles.buttonsContainer}>
                         <TouchableOpacity style={styles.button} onPress={() => handleAddPress(item)}>
                             <Text style={styles.buttonText}>Add</Text>
@@ -97,8 +79,6 @@ export default function CategoryScreen({ navigation }) {
             </View>
         );
     };
-
-
 
     return (
         <SafeAreaView style={styles.container}>
@@ -121,7 +101,8 @@ export default function CategoryScreen({ navigation }) {
                     style={styles.list}
                     data={data}
                     renderItem={renderItem}
-                    keyExtractor={(item) => `key-${item.id}`}
+                    keyExtractor={(item, index) => (item.id ? `key-${item.id}` : `key-${index}`)}
+
                 />
             )}
         </SafeAreaView>

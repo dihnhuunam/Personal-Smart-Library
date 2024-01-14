@@ -12,7 +12,7 @@ export default function DetailScreen({ route, navigation }) {
                     <Image style={{ width: 24, height: 24 }} source={require('../assets/arrow_back.png')} />
                 </TouchableOpacity>
                 <Text style={styles.headerText}>Book Details</Text>
-            </View>
+            </View> 
             <View style={styles.detailsContainer}>
                 <Image
                     style={styles.detailsImage}
