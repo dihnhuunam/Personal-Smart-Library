@@ -26,7 +26,7 @@ export default function Dashboard({ navigation }) {
       <Button 
         mode="outlined"
         icon="progress-pencil"
-        onPress={() => {navigation.navigate('MyLibraryScreen')}}    
+        onPress={() => {navigation.navigate('MyLibraryScreen')} }    
       >
         My Library
       </Button>
@@ -36,7 +36,7 @@ export default function Dashboard({ navigation }) {
         onPress={() =>
           navigation.reset({
             index: 0,
-            routes: [{ name: 'StartScreen' }],
+            routes: [{ name: 'LoginScreen' }],
           })
         }
       >
