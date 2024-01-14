@@ -51,24 +51,12 @@ export default function RegisterScreen({ navigation }) {
           Dob: dob.value,
         }),
       });
-      
-      if (response.ok) {
-        // User registered successfully, navigate to the dashboard or show a success message
-        navigation.reset({
-          index: 0,
-          routes: [{ name: 'Dashboard' }],
-        });
-      } else {
-        // Handle registration error
-        console.error('Error registering user:', response.status, await response.text());
-      }
     } catch (error) {
       console.error('Error connecting to the server:', error);
     }
 
     try {
       const response = await createUserWithEmailAndPassword(auth, email.value, password.value);
-
       if (response) {
         // User registered successfully with Firebase
         alert('Registration Successful!');
