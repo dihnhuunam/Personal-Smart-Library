@@ -1,8 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getFirestore } from 'firebase/firestore'; 
-import {getDatabase, ref, onValue,set} from 'firebase/database'
+import { getAuth } from "firebase/auth"; 
+import {getDatabase} from 'firebase/database'
 const firebaseConfig = {
   apiKey: "AIzaSyCAg8ow--inh1bRWxZ9LpiiSiNDFLqwAZ0",
   authDomain: "fir-auth-675ae.firebaseapp.com",

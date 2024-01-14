@@ -35,7 +35,7 @@ export default function RegisterScreen({ navigation }) {
       return;
     }
 
-    setLoading(true);
+    setLoading(true);  
 
     try {
       const response = await fetch('http://192.168.1.4:5000/api/users/addUser', {
@@ -60,7 +60,6 @@ export default function RegisterScreen({ navigation }) {
       if (response) {
         // User registered successfully with Firebase
         alert('Registration Successful!');
-
         navigation.replace('LoginScreen');
       }
     } catch (error) {
@@ -68,7 +67,7 @@ export default function RegisterScreen({ navigation }) {
       alert('Sign up failed: ' + error.message);
     } finally {
       setLoading(false);
-    }
+     }
   };
 
   return (

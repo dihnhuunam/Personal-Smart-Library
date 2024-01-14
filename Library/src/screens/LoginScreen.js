@@ -33,19 +33,19 @@ export default function LoginScreen({ route, navigation }) {
         setLoading(false);
       }
   };
-  const onLoginPressed = () => {
-    const emailError = emailValidator(email.value)
-    const passwordError = passwordValidator(password.value)
-    if (emailError || passwordError) {
-      setEmail({ ...email, error: emailError })
-      setPassword({ ...password, error: passwordError })
-      return
-    }
-    navigation.reset({
-      index: 0,
-      routes: [{ name: 'Dashboard' }],
-    })
-  }
+//   const onLoginPressed = () => {
+//     const emailError = emailValidator(email.value)
+//     const passwordError = passwordValidator(password.value)
+//     if (emailError || passwordError) {
+//       setEmail({ ...email, error: emailError })
+//       setPassword({ ...password, error: passwordError })
+//       return
+//     }
+//     navigation.reset({
+//       index: 0,
+//       routes: [{ name: 'Dashboard' }],
+//     })
+//   }
 
   return (
     <Background>

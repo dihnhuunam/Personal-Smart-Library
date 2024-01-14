@@ -8,7 +8,7 @@ export default function Dashboard({ navigation }) {
   return (
     <Background>
       <Logo />
-      <Header>Hello</Header>
+      <Header>Hello   </Header>
       <Button 
         mode="outlined"
         icon="account-circle"
@@ -22,7 +22,7 @@ export default function Dashboard({ navigation }) {
         onPress={() => {navigation.navigate('CategoryScreen')}}
       >
         Category
-      </Button>
+      </Button> 
       <Button 
         mode="outlined"
         icon="progress-pencil"

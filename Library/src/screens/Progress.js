@@ -7,25 +7,25 @@ import { update, getDatabase, ref } from 'firebase/database';
 
 export default function Progress({ route, navigation }) {
     const { selectedBook } = route.params;
+    console.log(selectedBook);
     const [currentPage, setCurrentPage] = useState('');
     const [percentage, setPercentage] = useState(0);
     const { user } = useAuth();
     const handleSendPress = () => {
         const numericValue = parseFloat(currentPage);
-        if (!isNaN(numericValue)) {
-            const pageCount = 100; // Thay thế giá trị này bằng pageCount thực tế của bạn
+        if (!isNaN(numericValue ) && numericValue < selectedBook.PageCount) {
+          // Thay thế giá trị này bằng pageCount thực tế của bạn
             const calculatedPercentage = (numericValue / selectedBook.PageCount) * 100;
             setPercentage(`${calculatedPercentage.toFixed(2)}%`);
             Keyboard.dismiss();
         } else {
-            Alert.alert('Vui lòng nhập một số hợp lệ.');
+            Alert.alert('Please enter valid number');
         }
-        const bookKey = selectedBook.key;
         const db = getDatabase();
-        // console.log(data);
-        const reference = ref(db, 'library/' + user?.uid+'/'  + selectedBook.BookID);
+        // console.log(data);  
+        const reference = ref(db, 'library/' + user?.uid  );
         update(reference, {
-          percent: percentage,
+            percent: percentage,
         })
     };
     return (
@@ -42,19 +42,19 @@ export default function Progress({ route, navigation }) {
                     source={{ uri: selectedBook.ImageURL }}
                     resizeMode="contain"
                 />
-                <View style={{flexDirection: 'row'}}>
-                <TextInput
-                    style={{margin:20, borderColor: 'gray', borderWidth: 1, paddingHorizontal: 8 }}
-                    placeholder="Current Reading Page"
-                    value={currentPage}
-                    onChangeText={(text) => setCurrentPage(text)}
-                    keyboardType="numeric"
-                />
-                <TouchableOpacity onPress={handleSendPress} style={{ position: 'absolute', right: 10, top: 10 }}>
-                    <View style={{marginTop:34, marginRight: 18, padding: 8, backgroundColor: 'blue', borderRadius: 4 }}>
-                        <Text style={{ color: 'white' }}>Send</Text>
-                    </View>
-                </TouchableOpacity>
+                <View style={{ flexDirection: 'row' }}>
+                    <TextInput
+                        style={{ margin: 20, borderColor: 'gray', borderWidth: 1, paddingHorizontal: 8 }}
+                        placeholder="Current Reading Page"
+                        value={currentPage}
+                        onChangeText={(text) => setCurrentPage(text)}
+                        keyboardType="numeric"
+                    />
+                    <TouchableOpacity onPress={handleSendPress} style={{ position: 'absolute', right: 10, top: 10 }}>
+                        <View style={{ marginTop: 34, marginRight: 18, padding: 8, backgroundColor: 'blue', borderRadius: 4 }}>
+                            <Text style={{ color: 'white' }}>Send</Text>
+                        </View>
+                    </TouchableOpacity>
                 </View>
                 <Text style={styles.detailsTitle}>{selectedBook.Title}</Text>
                 <Text style={styles.detailsCategory}>{`Category: ${selectedBook.Category}`}</Text>
@@ -63,9 +63,9 @@ export default function Progress({ route, navigation }) {
                 <Text style={styles.detailsPublicationDate}>{`Page Count: ${selectedBook.PageCount}`}</Text>
 
                 {/* <ProgressBar progress={percentage / 100} width={200} color={'green'} /> */}
-        <Text style={{ marginTop: 10, fontSize: 18 }}>
-          Percent: {percentage}
-        </Text>
+                <Text style={{ marginTop: 10, fontSize: 18 }}>
+                    Percent: {percentage}
+                </Text>
             </View>
         </SafeAreaView>
     );

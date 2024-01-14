@@ -12,16 +12,18 @@ export default function CategoryScreen({ navigation }) {
     const { user } = useAuth();
     const AddBook = (data) => {
         const db = getDatabase();
-        console.log(user);
         // console.log(data);
-        const reference = ref(db, 'library/' + user?.uid);
-        const newBookRef =push(reference, {
-            title: data.Title,
-            img: data.ImageURL,
-            author: data.AuthorName,
-            pageCount: data.PageCount,
+        const reference = ref(db, 'library/' + user?.uid );
+        const newBookRef = push(reference, {
+            Title: data.Title,
+            ImageURL: data.ImageURL,
+            AuthorName: data.AuthorName,
+            PageCount: data.PageCount,
+            Category: data.Category,
+            PublicationDate: data.PublicationDate,
         })
         const newBookKey = newBookRef.key;
+        console.log('a',newBookKey);  
     }
     useEffect(() => {
         getListPhotos();
@@ -29,7 +31,7 @@ export default function CategoryScreen({ navigation }) {
     }, []);
 
     const getListPhotos = () => {
-        const apiURL = 'http://192.168.1.4:5000/api/books/getAllBooks';  //thay bang api cua get books
+        const apiURL = 'https://65983853668d248edf244fc9.mockapi.io/book';  //thay bang api cua get books
         fetch(apiURL)
             .then((res) => res.json())
             .then((resJson) => {
@@ -49,7 +51,7 @@ export default function CategoryScreen({ navigation }) {
             item.Title.toLowerCase().includes(text.toLowerCase())
         );
         setData(filteredData);
-    };
+    }; 
 
         const renderItem = ({ item }) => {
             const handleAddPress = () => {
