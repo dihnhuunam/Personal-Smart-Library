@@ -12,7 +12,8 @@ import {
   ProfileScreen,
   CategoryScreen,
   DetailScreen,
-  MyLibraryScreen
+  MyLibraryScreen,
+  Progress
 } from './src/screens'
 import { AsyncStorage } from '@react-native-async-storage/async-storage';
 import { Auth } from 'firebase/auth'
@@ -31,8 +32,9 @@ export default function App() {
           <Stack.Screen name="ResetPasswordScreen" component={ResetPasswordScreen}/>
           <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
           <Stack.Screen name="CategoryScreen" component={CategoryScreen} />
-          <Stack.Screen name="DetailScreen" component={DetailScreen} />
+          <Stack.Screen name="DetailScreen" component={Progress} />
           <Stack.Screen name="MyLibraryScreen" component={MyLibraryScreen} />
+          <Stack.Screen name="Progress" component={Progress} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

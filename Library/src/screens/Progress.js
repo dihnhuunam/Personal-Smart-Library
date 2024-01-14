@@ -1,8 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View, SafeAreaView, Image, TouchableOpacity } from 'react-native';
 import { theme } from '../core/theme';
+import TextInput from '../components/TextInput';
 
-export default function DetailScreen({ route, navigation }) {
+export default function Progress({ route, navigation }) {
     const { selectedBook } = route.params;
 
     return (
@@ -11,7 +12,7 @@ export default function DetailScreen({ route, navigation }) {
             <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
                     <Image style={{ width: 24, height: 24 }} source={require('../assets/arrow_back.png')} />
                 </TouchableOpacity>
-                <Text style={styles.headerText}>Book Details</Text>
+                <Text style={styles.headerText}>My Progress</Text>
             </View>
             <View style={styles.detailsContainer}>
                 <Image
@@ -24,7 +25,9 @@ export default function DetailScreen({ route, navigation }) {
                 <Text style={styles.detailsAuthorName}>{`Author: ${selectedBook.AuthorName}`}</Text>
                 <Text style={styles.detailsPublicationDate}>{`Published: ${selectedBook.PublicationDate}`}</Text>
                 <Text style={styles.detailsPublicationDate}>{`Page Count: ${selectedBook.PageCount}`}</Text>
-                <Text style={styles.detailsDescription}>{selectedBook.Description}</Text>
+                <TextInput
+                placeholder="Current Reading Page"
+                />
             </View>
         </SafeAreaView>
     );
