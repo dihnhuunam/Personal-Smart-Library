@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    'Author': {
+    'AuthorName': {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     "PublicationDate": {
       type: DataTypes.DATEONLY,
     },
-    "Pagecount": {
+    "PageCount": {
       type: DataTypes.INTEGER,
     }
   }, {
@@ -37,8 +37,6 @@ module.exports = (sequelize, DataTypes) => {
   })
   return Book
 }
-
-
 
 
 

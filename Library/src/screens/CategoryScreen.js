@@ -25,7 +25,7 @@ export default function CategoryScreen({ navigation }) {
     }
     useEffect(() => {
         getListPhotos();
-        return () => { }; // Clean-up function
+        return () => { }; 
     }, []);
 
     const getListPhotos = () => {
@@ -72,7 +72,10 @@ export default function CategoryScreen({ navigation }) {
         }
     };
 
-    const renderItem = ({ item }) => {
+        const renderItem = ({ item }) => {
+            const handleAddPress = () => {
+                AddBook(item);
+              };
         return (
             <View style={styles.item}>
                 <Image style={styles.image} source={{ uri: item.ImageURL }} resizeMode="contain" />
@@ -80,7 +83,7 @@ export default function CategoryScreen({ navigation }) {
                     <Text style={styles.title}>{item.Title}</Text>
                     <Text style={styles.author}>{item.Author}</Text>
                     <View style={styles.buttonsContainer}>
-                        <TouchableOpacity style={styles.button} onPress={() => handleAddButtonPress(item)}>
+                        <TouchableOpacity style={styles.button} onPress={() => handleAddPress(item)}>
                             <Text style={styles.buttonText}>Add</Text>
                         </TouchableOpacity>
                         <TouchableOpacity

@@ -8,11 +8,8 @@ export default function DetailScreen({ route, navigation }) {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.headerContainer}>
-                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-                    <Image
-                        style={styles.backIcon}
-                        source={require('../assets/arrow_back.png')}
-                    />
+            <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+                    <Image style={{ width: 24, height: 24 }} source={require('../assets/arrow_back.png')} />
                 </TouchableOpacity>
                 <Text style={styles.headerText}>Book Details</Text>
             </View>
@@ -23,8 +20,8 @@ export default function DetailScreen({ route, navigation }) {
                     resizeMode="contain"
                 />
                 <Text style={styles.detailsTitle}>{selectedBook.Title}</Text>
-                <Text style={styles.detailsCategory}>{selectedBook.Category}</Text>
-                <Text style={styles.detailsAuthor}>{`Author: ${selectedBook.Author}`}</Text>
+                <Text style={styles.detailsCategory}>{`Category: ${selectedBook.Category}`}</Text>
+                <Text style={styles.detailsAuthorName}>{`Author: ${selectedBook.AuthorName}`}</Text>
                 <Text style={styles.detailsPublicationDate}>{`Published: ${selectedBook.PublicationDate}`}</Text>
                 <Text style={styles.detailsDescription}>{selectedBook.Description}</Text>
             </View>
@@ -40,23 +37,31 @@ const styles = StyleSheet.create({
     },
     headerContainer: {
         flexDirection: 'row',
+        justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 16,
+        marginBottom: 8,
+        marginTop: 8,
     },
     backButton: {
-        marginRight: 16,
+        position: 'absolute',
+        left: 8,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     backIcon: {
         width: 24,
         height: 24,
     },
     headerText: {
-        fontSize: 28, 
+        fontSize: 30,
         color: theme.colors.primary,
         fontWeight: 'bold',
+        paddingVertical: 12,
     },
     detailsContainer: {
-        alignItems: 'flex-start',  
+        flex: 1, 
+        alignItems: 'center', 
+        marginTop: 16,
     },
     detailsImage: {
         width: 200,
@@ -74,7 +79,7 @@ const styles = StyleSheet.create({
         color: theme.colors.secondary,
         marginBottom: 8,
     },
-    detailsAuthor: {
+    detailsAuthorName: {
         fontSize: 18,  
         color: theme.colors.secondary,
         marginBottom: 8,
