@@ -14,7 +14,7 @@ export default function CategoryScreen({ navigation }) {
         const db = getDatabase();
         console.log(user);
         // console.log(data);
-        const reference = ref(db, 'library/' + user?.uid + '/'+ data.BookID);
+        const reference = ref(db, 'library/' + user?.uid);
         const newBookRef =push(reference, {
             title: data.Title,
             img: data.ImageURL,
@@ -22,9 +22,6 @@ export default function CategoryScreen({ navigation }) {
             pageCount: data.PageCount,
         })
         const newBookKey = newBookRef.key;
-        console.log('====================================');
-        console.log(newBookKey);
-        console.log('====================================');
     }
     useEffect(() => {
         getListPhotos();

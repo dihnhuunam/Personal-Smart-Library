@@ -16,7 +16,7 @@ export default function MyLibraryScreen({ navigation }) {
         setLoading(false);
       });
     }, 1000);
-
+  
     return () => clearTimeout(timer);
   }, [user?.id]);
 
@@ -43,12 +43,12 @@ export default function MyLibraryScreen({ navigation }) {
       <View style={styles.item}>
         <Image
           style={styles.image}
-          source={{ uri: item.ImageURL }}
+          source={{ uri: item.img }}
           resizeMode="contain"
         />
         <View style={styles.itemDetails}>
-          <Text style={styles.title}>{item.Title}</Text>
-          <Text style={styles.author}>{item.AuthorName}</Text>
+          <Text style={styles.title}>{item.title}</Text>
+          <Text style={styles.author}>{item.author}</Text>
           <TouchableOpacity
             style={styles.button}
             onPress={() => navigation.navigate('Progress', { selectedBook: item })}
