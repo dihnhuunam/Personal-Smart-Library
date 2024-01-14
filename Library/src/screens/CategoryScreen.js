@@ -29,7 +29,7 @@ export default function CategoryScreen({ navigation }) {
     }, []);
 
     const getListPhotos = () => {
-        const apiURL = 'https://65983853668d248edf244fc9.mockapi.io/book';  //thay bang api cua get books
+        const apiURL = 'http://192.168.1.4:5000/api/books/getAllBooks';  //thay bang api cua get books
         fetch(apiURL)
             .then((res) => res.json())
             .then((resJson) => {
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
         padding: 8,
     },
     list: {
-        // flex: 1,
+        flex: 1,
     },
     item: {
         flexDirection: 'row',
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'center', // Center the items horizontally
+        alignItems: 'center', 
     },
     searchInput: {
         margin: 15,
