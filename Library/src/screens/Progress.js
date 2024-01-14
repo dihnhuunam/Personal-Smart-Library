@@ -27,7 +27,7 @@ export default function Progress({ route, navigation }) {
         update(reference, {
             percent: percentage,
         })
-    };
+    }; 
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.headerContainer}>
