@@ -12,16 +12,19 @@ export default function CategoryScreen({ navigation }) {
     const { user } = useAuth();
     const AddBook = (data) => {
         const db = getDatabase();
-        console.log(user?.uid);
+        console.log(user);
         // console.log(data);
-        const reference = ref(db, 'library/' + user?.uid);
-        push(reference, {
+        const reference = ref(db, 'library/' + user?.uid + '/'+ data.BookID);
+        const newBookRef =push(reference, {
             title: data.Title,
             img: data.ImageURL,
-            author: data.AuthorName
-
+            author: data.AuthorName,
+            pageCount: data.PageCount,
         })
-
+        const newBookKey = newBookRef.key;
+        console.log('====================================');
+        console.log(newBookKey);
+        console.log('====================================');
     }
     useEffect(() => {
         getListPhotos();
@@ -29,7 +32,7 @@ export default function CategoryScreen({ navigation }) {
     }, []);
 
     const getListPhotos = () => {
-        const apiURL = 'http://192.168.1.4:5000/api/books/getAllBooks';  //thay bang api cua get books
+        const apiURL = 'https://65983853668d248edf244fc9.mockapi.io/book';  //thay bang api cua get books
         fetch(apiURL)
             .then((res) => res.json())
             .then((resJson) => {
@@ -53,7 +56,7 @@ export default function CategoryScreen({ navigation }) {
 
     const handleAddButtonPress = async (item) => {
         try {
-            const apiURL = 'http://192.168.1.4:5000/api/other-database/addItem';
+            const apiURL = 'https://65983853668d248edf244fc9.mockapi.io/book';
             const response = await fetch(apiURL, {
                 method: 'POST',
                 headers: {
@@ -88,7 +91,7 @@ export default function CategoryScreen({ navigation }) {
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.detailsButton}
-                            onPress={() => navigation.navigate('DetailScreen', { selectedBook: item })}
+                            onPress={() => navigation.navigate('Progress', { selectedBook: item })}
                         >
                             <Text style={styles.buttonText}>Details</Text>
                         </TouchableOpacity>
@@ -121,7 +124,8 @@ export default function CategoryScreen({ navigation }) {
                     style={styles.list}
                     data={data}
                     renderItem={renderItem}
-                    keyExtractor={(item) => `key-${item.id}`}
+                    keyExtractor={(item, index) => (item.id ? `key-${item.id}` : `key-${index}`)}
+
                 />
             )}
         </SafeAreaView>

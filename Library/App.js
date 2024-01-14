@@ -32,7 +32,7 @@ export default function App() {
           <Stack.Screen name="ResetPasswordScreen" component={ResetPasswordScreen}/>
           <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
           <Stack.Screen name="CategoryScreen" component={CategoryScreen} />
-          <Stack.Screen name="DetailScreen" component={Progress} />
+          <Stack.Screen name="DetailScreen" component={DetailScreen} />
           <Stack.Screen name="MyLibraryScreen" component={MyLibraryScreen} />
           <Stack.Screen name="Progress" component={Progress} />
         </Stack.Navigator>

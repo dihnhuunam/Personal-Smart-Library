@@ -30,11 +30,11 @@ export default function MyLibraryScreen({ navigation }) {
             setData(Object.values(snapshot.val()))
             console.log(data);
           } else {
-            console.log('Data does not exist.');  
+            console.log('Data does not exist.');   
           }
         });
-      } catch (error) { 
-        console.error('Error:', error);
+      } catch (error) {
+        console.error('Error:', error); 
       }
     } 
 //   const getListPhotos = () => {
@@ -65,16 +65,16 @@ export default function MyLibraryScreen({ navigation }) {
           <Text style={styles.author}>{item.author}</Text>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => {}}
+            onPress={() => navigation.navigate('Progress', { selectedBook: item })}
           >
             <Text style={styles.buttonText}>Progress</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> 
         </View>
       </View>
-    );
-  };
+    ); 
+  }; 
 
-  const handleSearch = (text) => {
+  const handleSearch = (text) => { 
     setSearchQuery(text);
     const filteredData = originalData.filter((item) =>
       item.Title.toLowerCase().includes(text.toLowerCase())
@@ -97,7 +97,7 @@ export default function MyLibraryScreen({ navigation }) {
         placeholder="Search"
         style={styles.searchInput}
         value={searchQuery}
-        onChangeText={handleSearch}
+        onChangeText={handleSearch} 
       />
       {loading ? (
         <ActivityIndicator style={styles.loading} size="large" color={theme.colors.primary} />
