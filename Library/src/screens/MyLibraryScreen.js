@@ -18,7 +18,7 @@ export default function MyLibraryScreen({ navigation }) {
       }, 1000);   
   
       return () => clearTimeout(timer);
-    }, [user?.id]); 
+    }, [user?.id]);   
   
    const getList = async () => {
     const db = getDatabase(); 
@@ -33,10 +33,10 @@ export default function MyLibraryScreen({ navigation }) {
             console.log('Data does not exist.');  
           }
         });
-      } catch (error) {
+      } catch (error) { 
         console.error('Error:', error);
       }
-    }
+    } 
 //   const getListPhotos = () => {
 //     const apiURL = 'https://65983853668d248edf244fc9.mockapi.io/book';  //thay bang api cua get books
 //     fetch(apiURL)
