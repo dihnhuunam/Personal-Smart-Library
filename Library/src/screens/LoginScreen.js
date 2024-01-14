@@ -106,4 +106,3 @@ const styles = StyleSheet.create({
     color: theme.colors.primary,
   },
 })
-

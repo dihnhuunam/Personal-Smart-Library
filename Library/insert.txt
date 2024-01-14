@@ -1,4 +1,4 @@
-INSERT INTO `books` (`BookID`, `Category`, `ImageURL`, `Title`, `Author`, `Description`, `PublicationDate`, `PageCount`) VALUES
+INSERT INTO `books` (`BookID`, `Category`, `ImageURL`, `Title`, `AuthorName`, `Description`, `PublicationDate`, `PageCount`) VALUES
 (1, 'Fiction', 'https://i.postimg.cc/mkDbzMRr/The-Great-Gatsby.webp', 'The Great Gatsby', 'F. Scott Fitzgerald', 'A classic novel depicting the roaring twenties and the American Dream.', '1925-04-10', 180),
 (2, 'Science Fiction', 'https://i.postimg.cc/HLzDwx68/Dune.jpg', 'Dune', 'Frank Herbert', 'A science fiction epic set in a distant future amidst political intrigue and desert planets.', '1965-06-01', 412),
 (3, 'Mystery', 'https://i.postimg.cc/Nj1w0bT4/The-Da-Vinci-Code.jpg', 'The Da Vinci Code', 'Dan Brown', 'A gripping mystery that intertwines art, history, and religion.', '2003-03-18', 454),

@@ -112,7 +112,7 @@ export default function MyLibraryScreen({ navigation }) {
     </SafeAreaView>
   );
 }
-
+ 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center', // Center the items horizontally
+    alignItems: 'center', 
   },
   searchInput: {
     margin: 15,
@@ -205,4 +205,3 @@ const styles = StyleSheet.create({
   },
 
 });
-
