@@ -21,7 +21,7 @@ export default function ProfileScreen({ navigation }) {
   }, [user]);
 
   const fetchUserData = () => {
-    const apiURL = `http://192.168.1.4:5000/api/users/getAllUsers`;
+    const apiURL = `http://192.168.159.1:5000/api/books/getAllBooks`;
     fetch(apiURL)
       .then((res) => res.json())
       .then((resJson) => {
@@ -41,7 +41,7 @@ export default function ProfileScreen({ navigation }) {
       Dob: userData.Dob,
     };
 
-    fetch('http://192.168.1.4:5000/api/users/updateUser', {
+    fetch('http://192.168.159.1:5000/api/users/updateUser', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

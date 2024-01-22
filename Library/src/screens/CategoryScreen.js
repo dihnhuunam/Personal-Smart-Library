@@ -29,9 +29,9 @@ export default function CategoryScreen({ navigation }) {
         getListPhotos();
         return () => { }; 
     }, []);
-
+  
     const getListPhotos = () => {
-        const apiURL = 'https://65983853668d248edf244fc9.mockapi.io/book';  //thay bang api cua get books
+        const apiURL = 'http://192.168.159.1:5000/api/books/getAllBooks';  //thay bang api cua get books
         fetch(apiURL)
             .then((res) => res.json())
             .then((resJson) => {

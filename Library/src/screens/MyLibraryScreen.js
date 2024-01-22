@@ -10,15 +10,15 @@ export default function MyLibraryScreen({ navigation }) {
     const [loading, setLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState('');
     const { user } = useAuth();
-    const [dataa, setDataa] = useState([]);
-
+    // const [dataa, setDataa] = useState([]);
+    
     useEffect(() => {
         const timer = setTimeout(() => {
             getList().then(() => {
                 setLoading(false);
             });
         }, 1000);
-
+ 
         return () => clearTimeout(timer);
     }, [user?.id]);
 
@@ -37,7 +37,7 @@ export default function MyLibraryScreen({ navigation }) {
             console.error('Error:', error);
         }
     }
-
+  
     const renderItem = ({ item }) => { 
         return (
             <View style={styles.item}>
@@ -59,7 +59,7 @@ export default function MyLibraryScreen({ navigation }) {
             </View>
         );
     };
-
+ 
     const handleSearch = (text) => {
         setSearchQuery(text);
         const filteredData = originalData.filter((item) =>
@@ -67,7 +67,7 @@ export default function MyLibraryScreen({ navigation }) {
         );
         setData(filteredData);
     };
-
+  
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.headerContainer}>

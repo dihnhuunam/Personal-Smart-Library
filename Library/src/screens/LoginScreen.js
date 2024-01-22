@@ -8,8 +8,6 @@ import Button from '../components/Button'
 import TextInput from '../components/TextInput'
 import BackButton from '../components/BackButton'
 import { theme } from '../core/theme'
-import { emailValidator } from '../helpers/emailValidator'
-import { passwordValidator } from '../helpers/passwordValidator'
 import { FIREBASE_AUTH } from '../../firebaseConfig'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 
@@ -33,19 +31,6 @@ export default function LoginScreen({ route, navigation }) {
         setLoading(false);
       }
   };
-//   const onLoginPressed = () => {
-//     const emailError = emailValidator(email.value)
-//     const passwordError = passwordValidator(password.value)
-//     if (emailError || passwordError) {
-//       setEmail({ ...email, error: emailError })
-//       setPassword({ ...password, error: passwordError })
-//       return
-//     }
-//     navigation.reset({
-//       index: 0,
-//       routes: [{ name: 'Dashboard' }],
-//     })
-//   }
 
   return (
     <Background>

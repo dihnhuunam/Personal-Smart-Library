@@ -8,7 +8,7 @@ export default function Dashboard({ navigation }) {
   return (
     <Background>
       <Logo />
-      <Header>Hello   </Header>
+      <Header>Personal Smart Library</Header>
       <Button 
         mode="outlined"
         icon="account-circle"

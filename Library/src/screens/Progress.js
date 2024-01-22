@@ -21,12 +21,6 @@ export default function Progress({ route, navigation }) {
         } else {
             Alert.alert('Please enter valid number');
         }
-        const db = getDatabase();
-        // console.log(data);  
-        const reference = ref(db, 'library/' + user?.uid  );
-        update(reference, {
-            percent: percentage,
-        })
     }; 
     return (
         <SafeAreaView style={styles.container}>

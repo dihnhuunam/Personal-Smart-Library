@@ -24,12 +24,10 @@ export default function RegisterScreen({ navigation }) {
   const auth = FIREBASE_AUTH;
 
   const onSignUpPressed = async () => {
-    const fullNameError = nameValidator(fullName.value);
     const emailError = emailValidator(email.value);
     const passwordError = passwordValidator(password.value);
 
-    if (fullNameError || emailError || passwordError) {
-      setFullName({ ...fullName, error: fullNameError });
+    if (emailError || passwordError) {
       setEmail({ ...email, error: emailError });
       setPassword({ ...password, error: passwordError });
       return;
@@ -38,7 +36,7 @@ export default function RegisterScreen({ navigation }) {
     setLoading(true);  
 
     try {
-      const response = await fetch('http://192.168.1.4:5000/api/users/addUser', {
+        await fetch('http://192.168.159.1:5000/api/users/addUser', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
